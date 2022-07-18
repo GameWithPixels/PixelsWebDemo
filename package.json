@@ -4,9 +4,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
     "build": "preact build",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
+    "typescript": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache",
     "test": "jest ./tests"
   },
@@ -16,6 +20,8 @@
     "preact-router": "^3.2.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.8",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
@@ -28,12 +34,14 @@
     "eslint-plugin-jest": "25.7",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
     "jest": "^27.2.5",
     "jest-preset-preact": "^4.0.2",
+    "pinst": "^2.1.6",
     "preact-cli": "^3.0.0",
     "prettier": "^2.7.1",
     "sirv-cli": "^1.0.0-next.3",
-    "typescript": "^4.5.2"
+    "typescript": "^4.7.4"
   },
   "jest": {
     "preset": "jest-preset-preact",
