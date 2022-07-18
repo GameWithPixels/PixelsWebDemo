@@ -4,7 +4,7 @@ module.exports = {
     "preact",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "prettier",
+    "plugin:prettier/recommended",
   ],
   ignorePatterns: [
     "build/"
