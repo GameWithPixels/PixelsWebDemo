@@ -78,14 +78,14 @@ const Home: FunctionalComponent = () => {
             <h1>Home</h1>
             <p>Connected to {pixel?.name}</p>
             <button onClick={connect}>Connect</button>
-            <p/>
+            <p />
             <button onClick={blink}>Blink</button>
-            <p/>
+            <p />
             <button onClick={rainbow}>Rainbow</button>
-            <p/>
+            <p />
             <button onClick={instant}>Instant</button>
-            <button onClick={() => playInstant(0)}>Play #0</button>
-            <button onClick={() => playInstant(1)}>Play #1</button>
+            <button onClick={(): Promise<void> => playInstant(0) }>Play #0</button>
+            <button onClick={(): Promise<void> => playInstant(1) }>Play #1</button>
         </div>
     );
 };
