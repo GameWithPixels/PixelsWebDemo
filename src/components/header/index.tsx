@@ -1,12 +1,16 @@
 import { FunctionalComponent, h } from "preact";
-import { Link } from "preact-router/match";
+//import { Link } from "preact-router/match";
 import style from "./style.css";
 
 const Header: FunctionalComponent = () => {
+  const logoPath = "/assets/images/pixels-logo.png";
   return (
     <header class={style.header}>
-      <h1>Preact App</h1>
-      <nav>
+      <h1>
+        <img class={style.logo} src={logoPath} />
+        <text>Odd Or Even?</text>
+      </h1>
+      {/* <nav>
         <Link activeClassName={style.active} href="/">
           Home
         </Link>
@@ -16,7 +20,7 @@ const Header: FunctionalComponent = () => {
         <Link activeClassName={style.active} href="/profile/john">
           John
         </Link>
-      </nav>
+      </nav> */}
     </header>
   );
 };

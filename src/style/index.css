@@ -1,12 +1,23 @@
+:root {
+	--pixels-dark-blue: #100F1E;
+	--pixels-dark-gray: #30334D;
+	--pixels-gray: #4E5266;
+	--pixels-accent: #6A78FF;
+	--pixels-text: #8194AE;
+	--pixels-text-light: #D1D1D1;
+	--pixels-text-dark: #536077;
+	--header-height: 80px;
+}
+
 html, body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #FAFAFA;
+	background-color: var(--pixels-dark-blue);
+	color: var(--pixels-text-light);
 	font-family: 'Helvetica Neue', arial, sans-serif;
 	font-weight: 400;
-	color: #444;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
