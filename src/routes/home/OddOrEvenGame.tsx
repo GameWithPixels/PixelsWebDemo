@@ -374,19 +374,25 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
           clearTimeout(rollAnimTimeoutId);
         }
         return setTimeout(() => {
-          setResults(oddOrEvenRolls);
-          pixels.forEach((pixel, i) =>
-            setTimeout(() => {
-              //TODO register timeout with setRollAnimTimeoutId so it's cancelled by clearRolls
-              const win = oddOrEvenRolls[i] === oddOrEven;
-              console.log(
-                `Playing ${win ? "win" : "loose"} animation on ${pixel.name}`
+          Promise.allSettled(pixels.map((pixel) => pixel.stopAllAnimations()))
+            .then(() => {
+              setResults(oddOrEvenRolls);
+              pixels.forEach((pixel, i) =>
+                setTimeout(() => {
+                  //TODO register timeout with setRollAnimTimeoutId so it's cancelled by clearRolls
+                  const win = oddOrEvenRolls[i] === oddOrEven;
+                  console.log(
+                    `Playing ${win ? "win" : "loose"} animation on ${
+                      pixel.name
+                    }`
+                  );
+                  pixel
+                    .playInstantAnimation(win ? 0 : 1)
+                    .catch((error) => console.error(error));
+                }, delayBetweenAnimResults * i)
               );
-              pixel
-                .playInstantAnimation(win ? 0 : 1)
-                .catch((error) => console.error(error));
-            }, delayBetweenAnimResults * i)
-          );
+            })
+            .catch((error) => console.error(error));
         }, delayBeforeAnimResults);
       });
     }
