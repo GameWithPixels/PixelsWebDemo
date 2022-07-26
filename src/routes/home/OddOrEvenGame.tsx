@@ -65,7 +65,7 @@ const Controls: FunctionalComponent<ControlsProps> = ({
               : "Click on Start when you have connected all your dice."}
           </p>
           <button class={style.buttonHighlighted} onClick={connect}>
-            Connect To Pixel
+            Connect To Pixels
           </button>
           {readyCount >= minNumDice ? (
             <button
@@ -92,7 +92,7 @@ const Controls: FunctionalComponent<ControlsProps> = ({
         <>
           <p>
             {allDiceRolled
-              ? `All dice rolled! May be try again?`
+              ? "Results are in! Roll your dice to play again."
               : `Betting on ${oddOrEven} numbers, change your choice or roll your dice!`}
           </p>
           <div class={style.controlsButtons}>
