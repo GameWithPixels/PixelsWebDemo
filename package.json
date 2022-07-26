@@ -9,7 +9,7 @@
     "postpublish": "pinst --enable",
     "build": "preact build",
     "serve": "sirv build --port 8080 --cors --single",
-    "dev": "preact watch",
+    "dev": "preact watch --refresh",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --cache",
     "test": "jest ./tests"
