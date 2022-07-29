@@ -1,5 +1,5 @@
 .home {
-	padding: var(--header-height) 20px;
+	padding: var(--header-height) 60px;
 	min-height: 100%;
 	width: 100%;
 }
@@ -104,7 +104,7 @@ input:checked {
 	display: block;
 	background-color: var(--pixels-dark-gray);
 	text-align: center;
-	margin: 5px;
+	margin-bottom: 5px;
 	border-radius: 10px;
 }
 
@@ -112,12 +112,13 @@ input:checked {
 	margin: 10px;
 }
 
-.disc {
+.connectionStatusDisc {
+	position: relative;
+	right: -80px;
 	height: 15px;
 	width: 15px;
 	border-radius: 50%;
 	display: inline-block;
-	margin-left: 15px;
 }
 
 .colorDisconnected {

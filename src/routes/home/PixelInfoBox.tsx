@@ -83,10 +83,8 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
   return (
     <div class={style.pixelInfoBox}>
       <div class={style.pixelInfoBoxContent}>
-        <p>
-          <text>{pixel.name}</text>
-          <span class={[style.disc, connStatusColor].join(" ")} />
-        </p>
+        {/* <text>{pixel.name}</text> */}
+        <span class={[style.connectionStatusDisc, connStatusColor].join(" ")} />
         <div class={style.containerRelative}>
           <img class={style.dieImage} src="/assets/images/D20.png" />
           <div class={style.dieRollValue}>

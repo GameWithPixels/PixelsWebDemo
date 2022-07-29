@@ -19,7 +19,8 @@
 }
 
 .header h1 img {
-	width: var(--header-height);
+	width: 65px;
+	margin-left: 40px;
 }
 
 .header h1 text {
@@ -27,7 +28,7 @@
 	line-height: var(--header-height);
 	font-weight: 600;
 	color: var(--pixels-dark-gray);
-	margin-left: 15px;
+	margin-left: 30px;
 }
 
 .header nav {

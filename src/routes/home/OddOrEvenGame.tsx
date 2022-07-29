@@ -15,19 +15,12 @@ import {
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import PixelInfoBox from "./PixelInfoBox";
 
-// <a href="https://www.flaticon.com/free-icons/cross" title="cross icons">Cross icons created by Pixelmeetup - Flaticon</a>
-// <a href="https://www.flaticon.com/de/kostenlose-icons/blinker" title="blinker Icons">Blinker Icons erstellt von Freepik - Flaticon</a>
-// <a href="https://www.flaticon.com/free-icons/rainbow" title="rainbow icons">Rainbow icons created by Freepik - Flaticon</a>
-// <a href="https://www.flaticon.com/free-icons/smile" title="smile icons">Smile icons created by Pixel perfect - Flaticon</a>
-// <a href="https://www.flaticon.com/free-icons/sad" title="sad icons">Sad icons created by Pixel perfect - Flaticon</a>
-// <a href="https://www.flaticon.com/free-icons/sick" title="sick icons">Sick icons created by Freepik - Flaticon</a>
-
 type PlayMode = "setup" | "transfer" | "play";
 type OddOrEven = "odd" | "even";
 
 const minNumDice = 3;
 const delayBeforeAnimResults = 100;
-const delayBetweenAnimResults = 1500;
+const delayBetweenAnimResults = 2000;
 
 interface ControlsProps {
   readyCount: number;
@@ -201,6 +194,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
       count: 2,
       fade: 0.4,
     });
+
     // Win animation #1: play rainbow twice during 2 seconds,
     // with some fading between colors.
     const animWin = new EditAnimationRainbow({
@@ -208,20 +202,22 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
       count: 2,
       fade: 0.5,
     });
+
     // Win animation #2: animate color from green to dark blue,
     // over 2 seconds.
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const animWin1 = new EditAnimationGradient({
+    const animWin2 = new EditAnimationGradient({
       duration: 2,
       gradient: EditRgbGradient.createFromKeyFrames([
         { time: 0.2, color: Color.green },
         { time: 0.8, color: Color.darkBlue },
       ]),
     });
+
     // Win animation #3: use pattern to drive LEDs brightness while
     // animating colors from red to orange to green.
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const animWin2 = new EditAnimationGradientPattern({
+    const animWin3 = new EditAnimationGradientPattern({
       pattern: defaultAppDataSet.findPattern("Rotating Wide Ring"),
       gradient: EditRgbGradient.createFromKeyFrames([
         { time: 0.15, color: Color.red },
@@ -238,6 +234,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
       .toDataSet();
   }, [defaultAppDataSet]);
 
+  // Change play mode and clear roll results
   const setPlayMode = (newPlayMode: PlayMode) => {
     setPlayModeRaw((playMode) => {
       if (newPlayMode !== playMode) {
@@ -525,7 +522,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
                         src={
                           results[i] === oddOrEven
                             ? "/assets/images/smile.png"
-                            : "/assets/images/sick.png"
+                            : "/assets/images/angry.png"
                         }
                         alt={results[i]}
                       />
