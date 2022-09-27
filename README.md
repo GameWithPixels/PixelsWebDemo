@@ -16,16 +16,24 @@
     your tests
 
 
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
+For detailed explanation on how things work, checkout the [CLI Readme](
+    https://github.com/developit/preact-cli/blob/master/README.md
+).
 
 # Images Attributions
 
-clear.png <a href="https://www.flaticon.com/free-icons/cross" title="cross icons">Cross icons created by Pixelmeetup - Flaticon</a>
-
-blinker.png <a href="https://www.flaticon.com/de/kostenlose-icons/blinker" title="blinker Icons">Blinker Icons erstellt von Freepik - Flaticon</a>
-
-rainbow.png <a href="https://www.flaticon.com/free-icons/rainbow" title="rainbow icons">Rainbow icons created by Freepik - Flaticon</a>
-
-smile.png <a href="https://www.flaticon.com/free-icons/smile" title="smile icons">Smile icons created by Pixel perfect - Flaticon</a>
-
-angry.png <a href="https://www.flaticon.com/free-icons/emoji" title="emoji icons">Emoji icons created by Freepik - Flaticon</a>
+* clear.png: [Cross icons created by Pixelmeetup - Flaticon](
+    https://www.flaticon.com/free-icons/cross"
+)
+* blinker.png: [Blinker Icons erstellt von Freepik - Flaticon](
+    https://www.flaticon.com/de/kostenlose-icons/
+)
+* rainbow.png: [Rainbow icons created by Freepik - Flaticon](
+    https://www.flaticon.com/free-icons/rainbow
+)
+* smile.png: [Smile icons created by Pixel perfect - Flaticon](
+    https://www.flaticon.com/free-icons/smile
+)
+* angry.png: [Emoji icons created by Freepik - Flaticon](
+    https://www.flaticon.com/free-icons/emoji
+)
