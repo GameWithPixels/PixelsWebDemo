@@ -1,17 +1,15 @@
 import { Fragment, FunctionalComponent, h } from "preact";
 import style from "./style.css";
+import { Pixel, PixelRollState, PixelRollStateValues } from "pixels-library";
+import { Color } from "@systemic-games/pixels-core-animation";
 import {
-  Pixel,
-  Color,
   AppDataSet,
   EditAnimationRainbow,
   EditAnimationGradientPattern,
   EditRgbGradient,
   EditAnimationGradient,
   EditAnimationSimple,
-  PixelRollState,
-  PixelRollStateValues,
-} from "@systemic-games/pixels-library";
+} from "@systemic-games/pixels-edit-animation";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import PixelInfoBox from "./PixelInfoBox";
 
@@ -128,7 +126,7 @@ const PixelControls: FunctionalComponent<PixelControlsProps> = ({
   disconnect,
 }) => {
   const blink = async (pixel: Pixel) => {
-    await pixel.blink(Color.darkYellow, { count: 3, fade: 0.5 });
+    await pixel.blink(Color.dimYellow, { count: 3, fade: 0.5 });
   };
 
   // const rainbow = async (pixel: Pixel) => {
@@ -210,7 +208,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
       duration: 2,
       gradient: EditRgbGradient.createFromKeyFrames([
         { time: 0.2, color: Color.green },
-        { time: 0.8, color: Color.darkBlue },
+        { time: 0.8, color: Color.dimBlue },
       ]),
     });
 

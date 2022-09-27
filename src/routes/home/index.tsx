@@ -1,6 +1,9 @@
 import { FunctionalComponent, h } from "preact";
 import style from "./style.css";
-import { loadAppDataSet, AppDataSet } from "@systemic-games/pixels-library";
+import {
+  loadAppDataSet,
+  AppDataSet,
+} from "@systemic-games/pixels-edit-animation";
 import { useEffect, useState } from "preact/hooks";
 import OddOrEvenGame from "./OddOrEvenGame";
 

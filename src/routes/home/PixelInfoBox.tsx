@@ -9,7 +9,7 @@ import {
   RollState,
   PixelRollStateValues,
   PixelRollState,
-} from "@systemic-games/pixels-library";
+} from "pixels-library";
 import { useEffect, useState } from "preact/hooks";
 
 interface PixelInfoBoxProps {

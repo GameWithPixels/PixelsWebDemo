@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from "preact";
-import { EditAnimation } from "@systemic-games/pixels-library";
+import { EditAnimation } from "@systemic-games/pixels-edit-animation";
 import { useState } from "preact/hooks";
 
 interface SelectAnimationProps {
