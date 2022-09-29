@@ -16,8 +16,9 @@
   },
   "dependencies": {
     "@systemic-games/pixels-core-animation": "^0.4.0",
+    "@systemic-games/pixels-core-connect": "^0.1.0",
     "@systemic-games/pixels-edit-animation": "^0.1.0",
-    "pixels-library": "^0.1.1",
+    "@systemic-games/pixels-web-connect": "^0.2.1",
     "preact": "^10.10.0",
     "preact-render-to-string": "^5.2.1",
     "preact-router": "^3.2.1"

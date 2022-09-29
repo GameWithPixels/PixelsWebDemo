@@ -1,16 +1,14 @@
 import { Fragment, FunctionalComponent, h } from "preact";
-import style from "./style.css";
+import { useEffect, useState } from "preact/hooks";
 import {
   MessageOrType,
   Pixel,
-  ConnectionEvent,
-  ConnectionEventValues,
-  ConnectionEventData,
   RollState,
   PixelRollStateValues,
   PixelRollState,
-} from "pixels-library";
-import { useEffect, useState } from "preact/hooks";
+  PixelStatus,
+} from "@systemic-games/pixels-core-connect";
+import style from "./style.css";
 
 interface PixelInfoBoxProps {
   pixel: Pixel;
@@ -22,16 +20,13 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
   onRoll,
   children,
 }) => {
-  const [lastConnEv, setLastConnEv] = useState<ConnectionEvent>(
-    ConnectionEventValues.Connecting //TODO assume connecting by default
-  );
+  const [lastConnEv, setLastConnEv] = useState<PixelStatus>("connecting"); //TODO assume connecting by default
   const [lastRollMsg, setLastRollMsg] = useState<RollState | undefined>();
 
   useEffect(() => {
-    const connectionHandler = (ev: CustomEvent<ConnectionEventData>) => {
-      const connEv = (ev.detail as ConnectionEventData).event;
-      setLastConnEv(connEv);
-      if (connEv === "ready") {
+    const statusHandler = (status: PixelStatus) => {
+      setLastConnEv(status);
+      if (status === "ready") {
         const update = async () => {
           // Get some info
           const battery = await pixel.getBatteryLevel();
@@ -54,28 +49,28 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
       }
     };
 
-    const rollHandler = (ev: CustomEvent<MessageOrType>) => {
-      const msg = ev.detail as RollState;
-      const face = msg.faceIndex + 1;
-      console.log(`${pixel.name} => roll state: ${msg.state}, face ${face}`);
-      setLastRollMsg(msg);
-      onRoll?.(pixel, face, msg.state);
+    const rollHandler = (msg: MessageOrType) => {
+      const roll = msg as RollState;
+      const face = roll.faceIndex + 1;
+      console.log(`${pixel.name} => roll state: ${roll.state}, face ${face}`);
+      setLastRollMsg(roll);
+      onRoll?.(pixel, face, roll.state);
     };
 
     // Add listeners to get notified on connection and roll events
-    pixel.addEventListener("connectionEvent", connectionHandler);
-    pixel.addEventListener("messageRollState", rollHandler);
+    pixel.addEventListener("status", statusHandler);
+    pixel.addMessageListener("RollState", rollHandler);
 
     return () => {
-      pixel.removeEventListener("connectionEvent", connectionHandler);
-      pixel.removeEventListener("messageRollState", rollHandler);
+      pixel.removeEventListener("status", statusHandler);
+      pixel.removeMessageListener("RollState", rollHandler);
     };
   }, [pixel, onRoll]);
 
   const connStatusColor =
     lastConnEv === "connecting"
       ? style.colorConnecting
-      : lastConnEv === "connected"
+      : lastConnEv === "identifying"
       ? style.colorConnected
       : lastConnEv === "ready"
       ? style.colorReady

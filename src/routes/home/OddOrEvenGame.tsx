@@ -1,6 +1,12 @@
 import { Fragment, FunctionalComponent, h } from "preact";
-import style from "./style.css";
-import { Pixel, PixelRollState, PixelRollStateValues } from "pixels-library";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
+import {
+  Pixel,
+  autoReconnect,
+  PixelRollState,
+  PixelRollStateValues,
+} from "@systemic-games/pixels-core-connect";
+import { requestPixel } from "@systemic-games/pixels-web-connect";
 import { Color } from "@systemic-games/pixels-core-animation";
 import {
   AppDataSet,
@@ -10,8 +16,8 @@ import {
   EditAnimationGradient,
   EditAnimationSimple,
 } from "@systemic-games/pixels-edit-animation";
-import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import PixelInfoBox from "./PixelInfoBox";
+import style from "./style.css";
 
 type PlayMode = "setup" | "transfer" | "play";
 type OddOrEven = "odd" | "even";
@@ -267,14 +273,15 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     // Ask user to select a Pixel
     try {
       clearRolls();
-      const pixel = await Pixel.requestPixel();
+      const pixel = await requestPixel();
       setPixels((pixels) => {
         if (!pixels.includes(pixel)) {
           return [...pixels, pixel];
         }
         return pixels;
       });
-      await pixel.connect(true);
+      console.log(`Connecting to ${pixel.name}`);
+      await autoReconnect(pixel);
     } catch (error) {
       console.error(error);
     }
