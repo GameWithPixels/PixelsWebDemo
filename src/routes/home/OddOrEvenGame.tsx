@@ -280,7 +280,6 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
         }
         return pixels;
       });
-      console.log(`Connecting to ${pixel.name}`);
       await autoReconnect(pixel);
     } catch (error) {
       console.error(error);
