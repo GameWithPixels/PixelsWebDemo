@@ -1623,10 +1623,10 @@
   dependencies:
     "@systemic-games/pixels-core-utils" "^0.5.0"
 
-"@systemic-games/pixels-core-connect@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-connect/-/pixels-core-connect-0.2.2.tgz#6a588cd9a6ad750926479ce63458515217b08822"
-  integrity sha512-LnRIbu3ODQGegEp7DRSvx++Fb8YfzjNfrWR4s0m2WHB/iQbdK3gsfls6Wst2Xd6oTVDJwI3WGd3QyKyfwNsFpw==
+"@systemic-games/pixels-core-connect@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-connect/-/pixels-core-connect-0.2.5.tgz#b2a39441fdaa1586614095577c7a539644a3a939"
+  integrity sha512-1uLvKWDbcS/Ow001hFmbP3Fccd0U8dRiMDqLDREOOD5hJE29enhOwWEItHrs+EYja/YZGM48AOP7aPUjV3k7xQ==
   dependencies:
     "@systemic-games/pixels-core-animation" "^0.4.1"
     "@systemic-games/pixels-core-utils" "^0.5.0"
@@ -1646,12 +1646,12 @@
     "@systemic-games/pixels-core-animation" "^0.4.1"
     "@systemic-games/pixels-core-utils" "^0.5.0"
 
-"@systemic-games/pixels-web-connect@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-web-connect/-/pixels-web-connect-0.2.2.tgz#a6b31f436b1524e41affc01dde04b78a899a09c2"
-  integrity sha512-2vXXMrClJUd1GvWrnmGt7Ja/o13uUZatuAdTO+uL1AqeZDKB4l/3cfi99vWDvul6ZSRypG/Se5RLWjXC5qn9ug==
+"@systemic-games/pixels-web-connect@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-web-connect/-/pixels-web-connect-0.3.0.tgz#1c8a3159c929e33682bbfa088133f7c52d155a30"
+  integrity sha512-Iu9Y14wpUEQuKlR9EfLFiViGk0lcm+BVqhj9GrdyfFSdVBcjDaqsbvQoR7/FYsks+lCCxZMGRO1JAuCA/vH+NQ==
   dependencies:
-    "@systemic-games/pixels-core-connect" "^0.2.2"
+    "@systemic-games/pixels-core-connect" "^0.2.5"
     "@systemic-games/pixels-core-utils" "^0.5.0"
 
 "@szmarczak/http-timer@^1.1.2":

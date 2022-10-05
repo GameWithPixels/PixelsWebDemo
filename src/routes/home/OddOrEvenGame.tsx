@@ -6,8 +6,7 @@ import {
   PixelRollState,
   PixelRollStateValues,
 } from "@systemic-games/pixels-core-connect";
-import { requestPixel } from "@systemic-games/pixels-web-connect";
-import { Color } from "@systemic-games/pixels-core-animation";
+import { requestPixel, Color } from "@systemic-games/pixels-web-connect";
 import {
   AppDataSet,
   EditAnimationRainbow,
