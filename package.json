@@ -15,8 +15,8 @@
     "test": "jest ./tests"
   },
   "dependencies": {
-    "@systemic-games/pixels-edit-animation": "^1.0.2",
-    "@systemic-games/pixels-web-connect": "^1.0.2",
+    "@systemic-games/pixels-edit-animation": "^1.0.3",
+    "@systemic-games/pixels-web-connect": "^1.0.3",
     "preact": "^10.10.0",
     "preact-render-to-string": "^5.2.1",
     "preact-router": "^3.2.1"

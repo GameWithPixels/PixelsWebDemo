@@ -1616,44 +1616,44 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@systemic-games/pixels-core-animation@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-animation/-/pixels-core-animation-1.0.2.tgz#57a652e840b4214a631b37c0bbdb688b96157d6e"
-  integrity sha512-jXznVkxKWQpRg8x+q0IEzkL0T0/mvKdWZLKljqYuk3OvSKAp0V573N/49ePIHan1qZPQdP5FOSRPap/7cPK+pQ==
+"@systemic-games/pixels-core-animation@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-animation/-/pixels-core-animation-1.0.3.tgz#697eab60279387e2153175788d21c17e8618ded0"
+  integrity sha512-kfkdiQeKMrKe4+cnb0tx+d0lh91g9U9uVp1gapG9pulWSyB0IpeZyvPGKhDbvZoe0PVhOP/i7zd4zmQd5yv9EA==
   dependencies:
-    "@systemic-games/pixels-core-utils" "1.0.2"
+    "@systemic-games/pixels-core-utils" "1.0.3"
 
-"@systemic-games/pixels-core-connect@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-connect/-/pixels-core-connect-1.0.2.tgz#d09a5aef45c001db3ed0d3b3ddeef0290a91345c"
-  integrity sha512-gXx3m/D2pBzV9gPJ9AqHaNBQw0ufPyqUSAh6cq51WNQySH3llht8ACh0Dtxk5ExdPNjM3uC1HEbw0tXMXksWzA==
+"@systemic-games/pixels-core-connect@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-connect/-/pixels-core-connect-1.0.3.tgz#83e430d5bf1d792080d9d2831eaa948b923d1ba1"
+  integrity sha512-HWQPGHDmk/WlrjphAqDKEnS1DRQkA6BmXV1ejJ9OJLatK0BofehwO6DM0TcXpEgY9358tWpw3Fub/BcnvLYAMw==
   dependencies:
-    "@systemic-games/pixels-core-animation" "1.0.2"
-    "@systemic-games/pixels-core-utils" "1.0.2"
+    "@systemic-games/pixels-core-animation" "1.0.3"
+    "@systemic-games/pixels-core-utils" "1.0.3"
     events "^3.3.0"
 
-"@systemic-games/pixels-core-utils@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-utils/-/pixels-core-utils-1.0.2.tgz#2e64eec0e6e32f31837c172e16256d50d1ada35a"
-  integrity sha512-BqwwY9I2sAo8ehLveClBbVaOurSTXViTnvvgT3phr+ojQ3kQ4yWz/mRiduProTaPvz2hc3XWBmPQ0rVXuPRjcg==
+"@systemic-games/pixels-core-utils@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-utils/-/pixels-core-utils-1.0.3.tgz#213d1006c4e042aefb8512ed6ebdd00326c78b71"
+  integrity sha512-vhxqd6fHgxLSW1b7x640SYHNIoptcuBJ/qFDGKd89v59HhtIr8H4vECeuTWHzfs9K9eOZsHkpMTc0bx+dr45eA==
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@systemic-games/pixels-edit-animation@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-edit-animation/-/pixels-edit-animation-1.0.2.tgz#678b7690cb315b8b75cb57226b875f7181bace7b"
-  integrity sha512-amtzFd656pKhO0vElGLnwpjzJthojUVh6WTPTwVWnmr62VkmcaZxZct/l+6ZSAFi3pDWj84XCuTskT6QZud+bw==
+"@systemic-games/pixels-edit-animation@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-edit-animation/-/pixels-edit-animation-1.0.3.tgz#7a4ba8ba6e75fea23d56f1dc89efa4167037a5ab"
+  integrity sha512-M66o5NNY+puaZ+npDG98QIx6A20v5ZtwjCnVtM4NX6/Kg95zM1okH7YYB50A0LLWWgkH9121bWnGyOdmNDeXZA==
   dependencies:
-    "@systemic-games/pixels-core-animation" "1.0.2"
-    "@systemic-games/pixels-core-utils" "1.0.2"
+    "@systemic-games/pixels-core-animation" "1.0.3"
+    "@systemic-games/pixels-core-utils" "1.0.3"
 
-"@systemic-games/pixels-web-connect@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-web-connect/-/pixels-web-connect-1.0.2.tgz#2a9e9e48314f092ceffaadfea99e9881da067bc0"
-  integrity sha512-iY6kr51mIoEnyHP508ZMC/gSor5qPCTZ9bvGM8ojJSC2XHNIw+9/Zp2w2aHIi3GKrhrFu08+2gk7ykOzrbemeQ==
+"@systemic-games/pixels-web-connect@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-web-connect/-/pixels-web-connect-1.0.3.tgz#c835f5f9d92b9952f05382faebbe9890f75ed59f"
+  integrity sha512-9MVy1dIQQxazXwhGrSJ3U44rw7pCGz+/TRb9Yr+adslf85aJS/94oW5N9RD67fpY5Jku93BFcpmx3NCFe4X4jQ==
   dependencies:
-    "@systemic-games/pixels-core-connect" "1.0.2"
-    "@systemic-games/pixels-core-utils" "1.0.2"
+    "@systemic-games/pixels-core-connect" "1.0.3"
+    "@systemic-games/pixels-core-utils" "1.0.3"
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
