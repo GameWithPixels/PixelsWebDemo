@@ -14,6 +14,7 @@ import {
   EditRgbGradient,
   EditAnimationGradient,
   EditAnimationSimple,
+  EditDataSet,
 } from "@systemic-games/pixels-edit-animation";
 import PixelInfoBox from "./PixelInfoBox";
 import style from "./style.css";
@@ -134,17 +135,17 @@ const PixelControls: FunctionalComponent<PixelControlsProps> = ({
     await pixel.blink(Color.dimYellow, { count: 3, fade: 0.5 });
   };
 
-  // const rainbow = async (pixel: Pixel) => {
-  //   const editDataSet = new EditDataSet();
-  //   editDataSet.animations.push(
-  //     new EditAnimationRainbow({
-  //       duration: 3,
-  //       count: 2,
-  //       fade: 0.5,
-  //     })
-  //   );
-  //   pixel.playTestAnimation(editDataSet.toDataSet());
-  // };
+  const rainbow = async (pixel: Pixel) => {
+    const editDataSet = new EditDataSet();
+    editDataSet.animations.push(
+      new EditAnimationRainbow({
+        duration: 3,
+        count: 2,
+        fade: 0.5,
+      })
+    );
+    pixel.playTestAnimation(editDataSet.toDataSet());
+  };
 
   return (
     <div class={style.containerButtons}>
@@ -155,12 +156,12 @@ const PixelControls: FunctionalComponent<PixelControlsProps> = ({
         alt="blink"
         onClick={() => blink(pixel)}
       />
-      {/* <input
+      <input
         class={style.buttonSmallImage}
         type="image"
         src="/assets/images/rainbow.png"
         onClick={() => rainbow(pixel)}
-      /> */}
+      />
       <input
         class={style.buttonSmallImage}
         type="image"
@@ -200,7 +201,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
 
     // Win animation #1: play rainbow twice during 2 seconds,
     // with some fading between colors.
-    const animWin = new EditAnimationRainbow({
+    const animWin1 = new EditAnimationRainbow({
       duration: 2,
       count: 2,
       fade: 0.5,
@@ -221,6 +222,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     // animating colors from red to orange to green.
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const animWin3 = new EditAnimationGradientPattern({
+      duration: 2,
       pattern: defaultAppDataSet.findPattern("Rotating Wide Ring"),
       gradient: EditRgbGradient.createFromKeyFrames([
         { time: 0.15, color: Color.red },
@@ -233,7 +235,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
 
     // Build the above animations so they can be uploaded to the dice
     return defaultAppDataSet
-      .extractForAnimations([animWin, animLoose])
+      .extractForAnimations([animWin1, animLoose])
       .toDataSet();
   }, [defaultAppDataSet]);
 
