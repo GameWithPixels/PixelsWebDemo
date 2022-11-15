@@ -46,14 +46,6 @@ const Home: FunctionalComponent = () => {
       setDefaultAppDataSet(
         await loadAppDataSetFromJson("default-profiles.json")
       );
-      // const niceProfileAppDataSet = await loadAppDataSetFromJson(
-      //   "nice-profile.json"
-      // );
-      // setNiceProfileDataSet(
-      //   niceProfileAppDataSet
-      //     .extractForProfile(niceProfileAppDataSet.profiles[0])
-      //     .toDataSet()
-      // );
     }
     loadProfiles().catch((error) => console.error(error));
   }, []);
