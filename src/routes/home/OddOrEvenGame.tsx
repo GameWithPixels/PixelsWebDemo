@@ -1,12 +1,12 @@
 import { Fragment, FunctionalComponent, h } from "preact";
 import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 import {
+  requestPixel,
+  Color,
   Pixel,
-  autoReconnect,
-  PixelRollState,
-  PixelRollStateValues,
-} from "@systemic-games/pixels-core-connect";
-import { requestPixel, Color } from "@systemic-games/pixels-web-connect";
+  repeatConnect,
+  PixelRollStateNames,
+} from "@systemic-games/pixels-web-connect";
 import {
   AppDataSet,
   EditAnimationRainbow,
@@ -279,7 +279,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
         }
         return pixels;
       });
-      await autoReconnect(pixel);
+      await repeatConnect(pixel);
     } catch (error) {
       console.error(error);
     }
@@ -337,11 +337,11 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
   // };
 
   const onRoll = useCallback(
-    (pixel: Pixel, face: number, state: PixelRollState) => {
+    (pixel: Pixel, face: number, state: PixelRollStateNames) => {
       if (playMode === "play") {
         const index = pixels.indexOf(pixel);
         if (index >= 0) {
-          rolls[index] = state === PixelRollStateValues.OnFace ? face : 0;
+          rolls[index] = state === "onFace" ? face : 0;
           const validRollsCount = rolls.filter((f) => !!f).length;
           setAllDiceRolled((allDiceRolled) => {
             const allRolled = pixels.length === validRollsCount;

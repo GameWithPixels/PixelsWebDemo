@@ -4,9 +4,14 @@ Source code for the demo shown in the Pixel Kickstarter July [update](
     https://www.kickstarter.com/projects/pixels-dice/pixels-the-electronic-dice/posts/3568853
 ).
 
+It demonstrates how to use the `Pixels Web Connect` package. See the package's
+[readme](
+    https://www.npmjs.com/package/@systemic-games/pixels-web-connect
+) for information about supported browsers.
+
 ## CLI Commands
 
-*   `yarn install`: Installs dependencies
+*   `yarn`: Installs dependencies
 
 *   `yarn dev`: Run a development, HMR server
 

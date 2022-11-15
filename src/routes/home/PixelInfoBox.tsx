@@ -1,18 +1,19 @@
 import { Fragment, FunctionalComponent, h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import {
-  MessageOrType,
   Pixel,
-  RollState,
   PixelRollStateValues,
-  PixelRollState,
   PixelStatus,
-} from "@systemic-games/pixels-core-connect";
+} from "@systemic-games/pixels-web-connect";
 import style from "./style.css";
 
 interface PixelInfoBoxProps {
   pixel: Pixel;
-  onRoll?: (pixel: Pixel, face: number, state: PixelRollState) => void;
+  onRoll?: (
+    pixel: Pixel,
+    face: number,
+    state: keyof typeof PixelRollStateValues
+  ) => void;
 }
 
 const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
@@ -21,7 +22,7 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
   children,
 }) => {
   const [lastConnEv, setLastConnEv] = useState<PixelStatus>("connecting"); //TODO assume connecting by default
-  const [lastRollMsg, setLastRollMsg] = useState<RollState | undefined>();
+  const [lastRoll, setLastRoll] = useState<number>();
 
   useEffect(() => {
     const statusHandler = (status: PixelStatus) => {
@@ -29,18 +30,17 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
       if (status === "ready") {
         const update = async () => {
           // Get some info
-          const battery = await pixel.getBatteryLevel();
+          const battery = await pixel.queryBatteryState();
           console.log(
-            `${pixel.name} => battery: ${battery.level}, ${battery.voltage}v`
+            `${pixel.name} => battery: ${battery.level}, isCharging: ${battery.isCharging}`
           );
-          const rssi = await pixel.getRssi();
+          const rssi = await pixel.queryRssi();
           console.log(`${pixel.name} => rssi: ${rssi}`);
-          const rollState = await pixel.getRollState();
-          const face = rollState.faceIndex + 1;
+          const rollState = await pixel.rollState;
           console.log(
-            `${pixel.name} => initial roll state: ${rollState.state}, face ${face}`
+            `${pixel.name} => initial roll state: ${rollState.state}, face ${rollState.face}`
           );
-          setLastRollMsg(rollState);
+          setLastRoll(rollState.state === "onFace" ? rollState.face : 0);
         };
 
         update().catch((error) => {
@@ -49,21 +49,24 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
       }
     };
 
-    const rollHandler = (msg: MessageOrType) => {
-      const roll = msg as RollState;
-      const face = roll.faceIndex + 1;
-      console.log(`${pixel.name} => roll state: ${roll.state}, face ${face}`);
-      setLastRollMsg(roll);
-      onRoll?.(pixel, face, roll.state);
+    const rollHandler = (rollState: {
+      face: number;
+      state: keyof typeof PixelRollStateValues;
+    }) => {
+      console.log(
+        `${pixel.name} => roll state: ${rollState.state}, face ${rollState.face}`
+      );
+      setLastRoll(rollState.state === "onFace" ? rollState.face : 0);
+      onRoll?.(pixel, rollState.face, rollState.state);
     };
 
     // Add listeners to get notified on connection and roll events
     pixel.addEventListener("status", statusHandler);
-    pixel.addMessageListener("RollState", rollHandler);
+    pixel.addEventListener("rollState", rollHandler);
 
     return () => {
       pixel.removeEventListener("status", statusHandler);
-      pixel.removeMessageListener("RollState", rollHandler);
+      pixel.removeEventListener("rollState", rollHandler);
     };
   }, [pixel, onRoll]);
 
@@ -83,9 +86,9 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
         <div class={style.containerRelative}>
           <img class={style.dieImage} src="/assets/images/D20.png" />
           <div class={style.dieRollValue}>
-            {lastRollMsg?.state === PixelRollStateValues.OnFace ? (
+            {lastRoll ? (
               <div class={style.animScaleBounce}>
-                <text>{lastRollMsg.faceIndex + 1}</text>
+                <text>{lastRoll}</text>
               </div>
             ) : (
               <></>
