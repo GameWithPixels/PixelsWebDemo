@@ -9,6 +9,12 @@ It demonstrates how to use the `Pixels Web Connect` package. See the package's
     https://www.npmjs.com/package/@systemic-games/pixels-web-connect
 ) for information about supported browsers.
 
+The game is intended to be played with at least 3 Pixels dice, but if you have less than that
+you may edit `minNumDice` in `src/routes/home/OddOrEvenGame`.
+
+To try out different win animation, search for `animWin1` and find where the animation is used.
+You may replace replace it with either `animWin2` or `animWin3`.
+
 ## CLI Commands
 
 *   `yarn`: Installs dependencies

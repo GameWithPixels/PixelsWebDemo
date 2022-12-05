@@ -316,7 +316,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
 
   // Stopping animations on dismount
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => clearRolls, []);
+  useEffect(() => () => clearRolls, []);
 
   // const playAnimation = (pixel: Pixel, winOrLoose: "win" | "lose") => {
   //   // Play Rainbow for winners and blink magenta for the others
@@ -400,63 +400,6 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     }
   }, [allDiceRolled, oddOrEven, pixels, playMode, rolls]);
 
-  // const program = async (defaultAppDataSet: AppDataSet): Promise<boolean> => {
-  //   if (pixels.length) {
-  //     const animations = pixels.map((_, i) => {
-  //       const anim = selectedAnimationsRef.current[i];
-  //       return (
-  //         anim ??
-  //         //TODO use Color.dimmedRed
-  //         new EditAnimationSimple({
-  //           duration: 1,
-  //           color: Color.fromBytes(100, 0, 0),
-  //           count: 2,
-  //         })
-  //       );
-  //     });
-  //     const profile = new EditProfile();
-  //     profile.rules.push(
-  //       new EditRule(
-  //         new EditConditionIdle(),
-  //         animations.map((a) => {
-  //           return new EditActionPlayAnimation(a);
-  //         })
-  //       )
-  //     );
-  //     //TODO add extractAnimations() so to not create a dummy profile
-  //     const dataSet = new AppDataSet({
-  //       patterns: [...defaultAppDataSet.patterns],
-  //       animations,
-  //       profiles: [profile],
-  //     })
-  //       .extractForProfile(profile)
-  //       .toDataSet();
-  //     const results = await Promise.allSettled(
-  //       pixels.map(async (pixel) => {
-  //         try {
-  //           await pixel.transferInstantAnimations(dataSet);
-  //         } catch (error) {
-  //           console.error(error);
-  //           throw error;
-  //         }
-  //       })
-  //     );
-  //     clearRolls();
-  //     return results.every((r) => r.status === "fulfilled");
-  //   }
-  //   console.warn("No dice to program");
-  //   return true;
-  // };
-
-  // const onAnimationChange = (slotIndex: number, animation?: EditAnimation) => {
-  //   selectedAnimationsRef.current[slotIndex] = animation;
-  // };
-
-  // const testAnimation = async (slotIndex: number) => {
-  //   await Promise.allSettled(
-  //     pixels.map((pixel) => pixel.playInstantAnimation(slotIndex, true))
-  //   );
-  // }
   const oddRolls = results.filter((r) => r === "odd").length;
   const evenRolls = results.filter((r) => r === "even").length;
   const gameWinOrLoose = !results.length
@@ -466,29 +409,8 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     ? "win"
     : "lose";
 
-  // const [counter, setCounter] = useState(0);
-  // const flip = () => {
-  //   setCounter((c) => c + 1);
-  // };
-
   return (
     <div>
-      {/* <button onClick={flip}>Test</button>
-      <div class={style.animationContainer}>
-        <div
-          class={
-            counter % 2 == 1
-              ? [style.animationBox, style.animation].join(" ")
-              : style.animationBox
-          }
-        >
-          <img
-            src="/assets/images/smile.png"
-            alt="Avatar"
-            style="width:100px;height:100px;"
-          />
-        </div>
-      </div> */}
       <p />
       <Controls
         readyCount={pixels.length} //TODO .filter((p) => p.ready).length}
@@ -537,7 +459,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
                     <div class={style.resultBox}>
                       <text>{`Transfer: ${
                         transferProgresses[i] !== undefined
-                          ? `${Math.round(100 * transferProgresses[i])}%`
+                          ? `${transferProgresses[i]}%`
                           : "-"
                       }`}</text>
                     </div>

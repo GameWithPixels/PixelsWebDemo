@@ -30,17 +30,16 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
       if (status === "ready") {
         const update = async () => {
           // Get some info
-          const battery = await pixel.queryBatteryState();
+          const battery = await pixel.queryBattery();
           console.log(
             `${pixel.name} => battery: ${battery.level}, isCharging: ${battery.isCharging}`
           );
           const rssi = await pixel.queryRssi();
           console.log(`${pixel.name} => rssi: ${rssi}`);
-          const rollState = await pixel.rollState;
           console.log(
-            `${pixel.name} => initial roll state: ${rollState.state}, face ${rollState.face}`
+            `${pixel.name} => initial roll state: ${pixel.rollState}, face ${pixel.currentFace}`
           );
-          setLastRoll(rollState.state === "onFace" ? rollState.face : 0);
+          setLastRoll(pixel.rollState === "onFace" ? pixel.currentFace : 0);
         };
 
         update().catch((error) => {
