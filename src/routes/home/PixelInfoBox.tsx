@@ -1,11 +1,11 @@
-import { Fragment, FunctionalComponent, h } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { FunctionalComponent, h } from "preact";
+import { useEffect } from "preact/hooks";
 import {
   Pixel,
   PixelRollStateValues,
-  PixelStatus,
 } from "@systemic-games/pixels-web-connect";
 import style from "./style.css";
+import { usePixelStatus, usePixelValue } from "@systemic-games/pixels-react";
 
 interface PixelInfoBoxProps {
   pixel: Pixel;
@@ -21,76 +21,62 @@ const PixelInfoBox: FunctionalComponent<PixelInfoBoxProps> = ({
   onRoll,
   children,
 }) => {
-  const [lastConnEv, setLastConnEv] = useState<PixelStatus>("connecting"); //TODO assume connecting by default
-  const [lastRoll, setLastRoll] = useState<number>();
+  const status = usePixelStatus(pixel);
+  const [rollState] = usePixelValue(pixel, "rollState");
+  const [rollResult] = usePixelValue(pixel, "roll");
 
   useEffect(() => {
-    const statusHandler = (status: PixelStatus) => {
-      setLastConnEv(status);
-      if (status === "ready") {
-        const update = async () => {
-          // Get some info
-          const battery = await pixel.queryBattery();
-          console.log(
-            `${pixel.name} => battery: ${battery.level}, isCharging: ${battery.isCharging}`
-          );
-          const rssi = await pixel.queryRssi();
-          console.log(`${pixel.name} => rssi: ${rssi}`);
-          console.log(
-            `${pixel.name} => initial roll state: ${pixel.rollState}, face ${pixel.currentFace}`
-          );
-          setLastRoll(pixel.rollState === "onFace" ? pixel.currentFace : 0);
-        };
+    if (status === "ready") {
+      const getInfo = async () => {
+        // Log battery state
+        console.log(
+          `${pixel.name} => battery: ${pixel.batteryLevel}, isCharging: ${pixel.isCharging}`
+        );
+        // Log RSSI
+        console.log(`${pixel.name} => rssi: ${await pixel.queryRssi()}`);
+        // Log roll state
+        console.log(
+          `${pixel.name} => initial roll state: ${pixel.rollState}, face ${pixel.currentFace}`
+        );
+      };
 
-        update().catch((error) => {
-          console.error(error);
-        });
-      }
-    };
+      getInfo().catch(console.error);
+    }
+  }, [pixel, status]);
 
-    const rollHandler = (rollState: {
-      face: number;
-      state: keyof typeof PixelRollStateValues;
-    }) => {
-      console.log(
-        `${pixel.name} => roll state: ${rollState.state}, face ${rollState.face}`
-      );
-      setLastRoll(rollState.state === "onFace" ? rollState.face : 0);
+  useEffect(() => {
+    if (rollState) {
+      // Notify roll state change
       onRoll?.(pixel, rollState.face, rollState.state);
-    };
+    }
+  }, [onRoll, pixel, rollState]);
 
-    // Add listeners to get notified on connection and roll events
-    pixel.addEventListener("status", statusHandler);
-    pixel.addEventListener("rollState", rollHandler);
-
-    return () => {
-      pixel.removeEventListener("status", statusHandler);
-      pixel.removeEventListener("rollState", rollHandler);
-    };
-  }, [pixel, onRoll]);
+  useEffect(() => {
+    if (rollResult) {
+      // We log the result of each roll just for demonstration purposes
+      console.log(`Pixel ${pixel.name} rolled a ${rollResult.face}`);
+    }
+  }, [rollResult, pixel]);
 
   const connStatusColor =
-    lastConnEv === "connecting"
+    status === "connecting"
       ? style.colorConnecting
-      : lastConnEv === "identifying"
+      : status === "identifying"
       ? style.colorConnected
-      : lastConnEv === "ready"
+      : status === "ready"
       ? style.colorReady
       : style.colorDisconnected;
   return (
     <div class={style.pixelInfoBox}>
       <div class={style.pixelInfoBoxContent}>
-        {/* <text>{pixel.name}</text> */}
         <span class={[style.connectionStatusDisc, connStatusColor].join(" ")} />
         <div class={style.containerRelative}>
           <img class={style.dieImage} src="/assets/images/D20.png" />
           <div class={style.dieRollValue}>
-            {lastRoll ? (
+            {pixel.rollState === "onFace" && (
               <div class={style.animScaleBounce}>
-                <text>{lastRoll}</text>
+                <text>{pixel.currentFace}</text>
               </div>
-            ) : (
-              <></>
             )}
           </div>
         </div>
