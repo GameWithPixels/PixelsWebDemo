@@ -6,7 +6,7 @@ Source code for the demo shown in the Pixel Kickstarter July [update](
 
 It demonstrates how to use the `Pixels Web Connect` package. See the package's
 [readme](
-    https://www.npmjs.com/package/@systemic-games/pixels-web-connect
+    https://github.com/GameWithPixels/pixels-js/tree/main/packages/pixels-web-connect
 ) for information about supported browsers.
 
 The game is intended to be played with at least 3 Pixels dice, but if you have less than that

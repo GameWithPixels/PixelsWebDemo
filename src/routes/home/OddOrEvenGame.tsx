@@ -5,7 +5,7 @@ import {
   Color,
   Pixel,
   repeatConnect,
-  PixelRollStateNames,
+  PixelRollState,
 } from "@systemic-games/pixels-web-connect";
 import {
   AppDataSet,
@@ -15,6 +15,7 @@ import {
   EditAnimationGradient,
   EditAnimationSimple,
   EditDataSet,
+  createDataSetForAnimations,
 } from "@systemic-games/pixels-edit-animation";
 import PixelInfoBox from "./PixelInfoBox";
 import style from "./style.css";
@@ -234,9 +235,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     });
 
     // Build the above animations so they can be uploaded to the dice
-    return defaultAppDataSet
-      .extractForAnimations([animWin1, animLoose])
-      .toDataSet();
+    return createDataSetForAnimations([animWin1, animLoose]).toDataSet();
   }, [defaultAppDataSet]);
 
   // Change play mode and clear roll results
@@ -339,7 +338,7 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
   // };
 
   const onRoll = useCallback(
-    (pixel: Pixel, face: number, state: PixelRollStateNames) => {
+    (pixel: Pixel, face: number, state: PixelRollState) => {
       if (playMode === "play") {
         const index = pixels.indexOf(pixel);
         if (index >= 0) {
