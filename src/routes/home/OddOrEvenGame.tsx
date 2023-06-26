@@ -19,6 +19,7 @@ import {
 } from "@systemic-games/pixels-edit-animation";
 import PixelInfoBox from "./PixelInfoBox";
 import style from "./style.css";
+import { usePixelStatus } from "@systemic-games/pixels-react";
 
 type PlayMode = "setup" | "transfer" | "play";
 type OddOrEven = "odd" | "even";
@@ -46,13 +47,21 @@ const Controls: FunctionalComponent<ControlsProps> = ({
   allDiceRolled,
   connect,
 }) => {
-  const onChangeValue = (event: h.JSX.TargetedEvent<HTMLDivElement>) => {
-    if ((event.target as HTMLInputElement).value === "odd") {
-      setOddOrEven("odd");
-    } else {
-      setOddOrEven("even");
-    }
-  };
+  const onChangeValue = useCallback(
+    (event: h.JSX.TargetedEvent<HTMLDivElement>) => {
+      if ((event.target as HTMLInputElement).value === "odd") {
+        setOddOrEven("odd");
+      } else {
+        setOddOrEven("even");
+      }
+    },
+    [setOddOrEven]
+  );
+  const setTransferMode = useCallback(
+    () => setPlayMode("transfer"),
+    [setPlayMode]
+  );
+  const setSetupMode = useCallback(() => setPlayMode("setup"), [setPlayMode]);
   return (
     <div>
       {playMode === "setup" ? (
@@ -66,10 +75,7 @@ const Controls: FunctionalComponent<ControlsProps> = ({
             Connect To Pixels
           </button>
           {readyCount >= minNumDice ? (
-            <button
-              class={style.buttonHighlighted}
-              onClick={() => setPlayMode("transfer")}
-            >
+            <button class={style.buttonHighlighted} onClick={setTransferMode}>
               Start
             </button>
           ) : (
@@ -79,12 +85,12 @@ const Controls: FunctionalComponent<ControlsProps> = ({
       ) : playMode === "transfer" ? (
         <>
           <p>{`Transferring animations, please wait...`}</p>
-          <button
+          {/* TODO <button
             class={style.buttonHighlighted}
-            //onClick={() => setPlayMode("setup")} // TODO
+            onClick={() => setPlayMode("setup")}
           >
             Cancel Transfer
-          </button>
+          </button> */}
         </>
       ) : (
         <>
@@ -110,10 +116,7 @@ const Controls: FunctionalComponent<ControlsProps> = ({
               />
               <text class={style.controlsText}>Even</text>
             </div>
-            <button
-              class={style.buttonHighlighted}
-              onClick={() => setPlayMode("setup")}
-            >
+            <button class={style.buttonHighlighted} onClick={setSetupMode}>
               Stop Game
             </button>
           </div>
@@ -132,6 +135,16 @@ const PixelControls: FunctionalComponent<PixelControlsProps> = ({
   pixel,
   disconnect,
 }) => {
+  const status = usePixelStatus(pixel);
+
+  const reconnect = async (pixel: Pixel) => {
+    try {
+      await repeatConnect(pixel);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const blink = async (pixel: Pixel) => {
     await pixel.blink(Color.dimYellow, { count: 3, fade: 0.5 });
   };
@@ -145,31 +158,42 @@ const PixelControls: FunctionalComponent<PixelControlsProps> = ({
         fade: 0.5,
       })
     );
-    pixel.playTestAnimation(editDataSet.toDataSet());
+    await pixel.playTestAnimation(editDataSet.toDataSet());
   };
 
   return (
     <div class={style.containerButtons}>
-      <input
-        class={style.buttonSmallImage}
-        type="image"
-        src="/assets/images/blinker.png"
-        alt="blink"
-        onClick={() => blink(pixel)}
-      />
-      <input
-        class={style.buttonSmallImage}
-        type="image"
-        src="/assets/images/rainbow.png"
-        onClick={() => rainbow(pixel)}
-      />
-      <input
-        class={style.buttonSmallImage}
-        type="image"
-        src="/assets/images/clear.png"
-        alt="remove"
-        onClick={() => disconnect(pixel)}
-      />
+      {status === "disconnected" ? (
+        <button
+          class={style.buttonHighlighted}
+          onClick={() => reconnect(pixel)}
+        >
+          Re-connect
+        </button>
+      ) : (
+        <>
+          <input
+            class={style.buttonSmallImage}
+            type="image"
+            src="/assets/images/blinker.png"
+            alt="blink"
+            onClick={() => blink(pixel)}
+          />
+          <input
+            class={style.buttonSmallImage}
+            type="image"
+            src="/assets/images/rainbow.png"
+            onClick={() => rainbow(pixel)}
+          />
+          <input
+            class={style.buttonSmallImage}
+            type="image"
+            src="/assets/images/clear.png"
+            alt="remove"
+            onClick={() => disconnect(pixel)}
+          />
+        </>
+      )}
     </div>
   );
 };
@@ -238,65 +262,6 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     return createDataSetForAnimations([animWin1, animLoose]).toDataSet();
   }, [defaultAppDataSet]);
 
-  // Change play mode and clear roll results
-  const setPlayMode = (newPlayMode: PlayMode) => {
-    setPlayModeRaw((playMode) => {
-      if (newPlayMode !== playMode) {
-        clearRolls();
-        console.log(`Play mode changed to: ${newPlayMode}`);
-        if (newPlayMode === "transfer") {
-          setTransferProgresses([]);
-          Promise.allSettled(
-            pixels.map((pixel, i) => {
-              console.log(`Transferring animations to ${pixel.name}`);
-              return pixel.transferInstantAnimations(animDataSet, (progress) =>
-                setTransferProgresses((transferProgresses) => {
-                  const progresses = [...transferProgresses];
-                  progresses[i] = progress;
-                  return progresses;
-                })
-              );
-            })
-          )
-            .then(() => {
-              console.log("Animations transferred to all dice");
-              setPlayMode("play");
-            })
-            .catch((error) => console.error(error)); //TODO handle fail transfer
-        }
-      }
-      return newPlayMode;
-    });
-  };
-
-  const connect = async () => {
-    // Ask user to select a Pixel
-    try {
-      clearRolls();
-      const pixel = await requestPixel();
-      setPixels((pixels) => {
-        if (!pixels.includes(pixel)) {
-          return [...pixels, pixel];
-        }
-        return pixels;
-      });
-      await repeatConnect(pixel);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const disconnect = async (pixel: Pixel) => {
-    clearRolls();
-    setPixels((pixels) => {
-      if (pixels.includes(pixel)) {
-        return pixels.filter((p) => p !== pixel);
-      }
-      return pixels;
-    });
-    pixel.disconnect();
-  };
-
   const clearRolls = useCallback(() => {
     console.log("Clearing rolls");
     rolls.length = 0;
@@ -312,6 +277,73 @@ const OddOrEvenGame: FunctionalComponent<OddOrEvenGameProps> = ({
     // State "rolls" never changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Change play mode and clear roll results
+  const setPlayMode = useCallback(
+    (newPlayMode: PlayMode) => {
+      setPlayModeRaw((playMode) => {
+        if (newPlayMode !== playMode) {
+          clearRolls();
+          console.log(`Play mode changed to: ${newPlayMode}`);
+          if (newPlayMode === "transfer") {
+            setTransferProgresses([]);
+            Promise.allSettled(
+              pixels.map((pixel, i) => {
+                console.log(`Transferring animations to ${pixel.name}`);
+                return pixel.transferInstantAnimations(
+                  animDataSet,
+                  (progress) =>
+                    setTransferProgresses((transferProgresses) => {
+                      const progresses = [...transferProgresses];
+                      progresses[i] = progress;
+                      return progresses;
+                    })
+                );
+              })
+            )
+              .then(() => {
+                console.log("Animations transferred to all dice");
+                setPlayMode("play");
+              })
+              .catch((error) => console.error(error)); //TODO handle fail transfer
+          }
+        }
+        return newPlayMode;
+      });
+    },
+    [animDataSet, clearRolls, pixels]
+  );
+
+  const connect = useCallback(async () => {
+    // Ask user to select a Pixel
+    try {
+      clearRolls();
+      const pixel = await requestPixel();
+      setPixels((pixels) => {
+        if (!pixels.includes(pixel)) {
+          return [...pixels, pixel];
+        }
+        return pixels;
+      });
+      await repeatConnect(pixel);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [clearRolls]);
+
+  const disconnect = useCallback(
+    async (pixel: Pixel) => {
+      clearRolls();
+      setPixels((pixels) => {
+        if (pixels.includes(pixel)) {
+          return pixels.filter((p) => p !== pixel);
+        }
+        return pixels;
+      });
+      pixel.disconnect();
+    },
+    [clearRolls]
+  );
 
   // Stopping animations on dismount
   // eslint-disable-next-line react-hooks/exhaustive-deps
