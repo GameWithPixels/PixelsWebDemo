@@ -6,7 +6,5 @@ module.exports = {
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
   ],
-  ignorePatterns: [
-    "build/"
-  ],
+  ignorePatterns: ["build/"],
 };
