@@ -19,11 +19,11 @@ You may replace replace it with either `animWin2` or `animWin3`.
 
 *   `yarn`: Installs dependencies
 
-*   `yarn dev`: Run a development, HMR server
+*   `yarn dev`: Run a development, HMR server (use `yarn dev16` with Node JS 16)
 
 *   `yarn serve`: Run a production-like server
 
-*   `yarn build`: Production-ready build
+*   `yarn build`: Production-ready build (use `yarn build16` with Node JS 16)
 
 *   `yarn lint`: Pass TypeScript files using ESLint
 
