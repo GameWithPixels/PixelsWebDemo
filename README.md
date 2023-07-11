@@ -1,11 +1,27 @@
-# PixelsWebDemo
+# Pixels Web Demo
 
 Source code for the demo shown in the Pixel Kickstarter July [update](
     https://www.kickstarter.com/projects/pixels-dice/pixels-the-electronic-dice/posts/3568853
 ).
 
-It demonstrates how to use the `Pixels Web Connect` package. See the package's
-[readme](
+## Foreword
+
+Pixels are full of LEDs, smarts and no larger than regular dice, they can be
+customized to light up when and how you desire.
+Check our [website](https://gamewithpixels.com/) for more information.
+
+> **Warning**
+> Before jumping into programming please make sure to read our Pixels developer's
+> [guide](https://github.com/GameWithPixels/.github/blob/main/doc/DevelopersGuide.md).
+
+Please open a [ticket](
+    https://github.com/GameWithPixels/PixelsWebDemo/issues
+) on GitHub if you're having any issue with this demo.
+
+## The Game
+
+This mini game demonstrates how to use the `Pixels Web Connect` package.
+See the package's [readme](
     https://github.com/GameWithPixels/pixels-js/tree/main/packages/pixels-web-connect
 ) for information about supported browsers.
 
