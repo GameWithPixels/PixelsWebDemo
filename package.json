@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build",
-    "build16": "preact build",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-inline-css",
+    "build16": "preact build --no-inline-css",
     "serve": "sirv build --cors --single",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact watch",
     "dev16": "preact watch",
