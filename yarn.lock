@@ -1634,51 +1634,51 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@systemic-games/pixels-core-animation@1.1.0", "@systemic-games/pixels-core-animation@~1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-animation/-/pixels-core-animation-1.1.0.tgz#2fbf7f94b4fc8502c438ee2ec834aada8ac81451"
-  integrity sha512-b1168G7iSL6LHX7OM0+PDDOXoTlpHCguXTlv5VQ87KM2nSkpDMFTAoXNTXNO0Kx3D52ArxuFua1hZZB2QOOotg==
+"@systemic-games/pixels-core-animation@~1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-animation/-/pixels-core-animation-1.2.0.tgz#8024deb14cde06b8757912c829b12cdd401ba8f5"
+  integrity sha512-k8ZVLfHaivBsUcR9zWQ+ZFY94k8GXJ2ibBn1rqS0e41Os/ZPjcKmFhMndiT6axPqYtn/B82rOTc9t6V4idKswA==
   dependencies:
-    "@systemic-games/pixels-core-utils" "1.1.0"
+    "@systemic-games/pixels-core-utils" "~1.2.0"
 
-"@systemic-games/pixels-core-connect@~1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-connect/-/pixels-core-connect-1.1.1.tgz#fc69b2f80ea567ce5eb97afeae4a34b6523686d5"
-  integrity sha512-4teP/fkmki/tgbsPgEUAEBq8YGlshYeUF5Oy8M7VJRcS5GAvpdjZfPIgH0qSQc91GjXDsSPWuVd36MknnveQRA==
+"@systemic-games/pixels-core-connect@^1.2.0", "@systemic-games/pixels-core-connect@~1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-connect/-/pixels-core-connect-1.2.0.tgz#a9ea54d6de992faa90b2f126ab3d738e95529661"
+  integrity sha512-BUgkL0j3du+6/34avwhccLL+QnAS781yVz1UJMMtRSx7QsJRKzuhuUCsHdCnLGEomww0yZoTMmGvlcBcItxugA==
   dependencies:
-    "@systemic-games/pixels-core-animation" "~1.1.0"
-    "@systemic-games/pixels-core-utils" "~1.1.0"
+    "@systemic-games/pixels-core-animation" "~1.2.0"
+    "@systemic-games/pixels-core-utils" "~1.2.0"
     events "^3.3.0"
 
-"@systemic-games/pixels-core-utils@1.1.0", "@systemic-games/pixels-core-utils@~1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-utils/-/pixels-core-utils-1.1.0.tgz#f98c1dc081bc79d50d0fd0780f5cdaa3d51950dc"
-  integrity sha512-2oymNDYUgzXExwxsU8oXPpQ3Ix/tXP3eJrTyt1I5/585+OdgLEhVqEs9BONbmKC4x+iVqg1Pl6lt39tgALumvw==
+"@systemic-games/pixels-core-utils@~1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-core-utils/-/pixels-core-utils-1.2.0.tgz#0d268eca7fc80ae2baf79bb40f1c882deda630a0"
+  integrity sha512-jzV2nDtYZgMHYJo544zUQS0voqC9UTRbgJZ59O4L3vcTrB0b5il7CWCMCcGQVMZs/fw6Cb5cRApBCyeBQ+74FQ==
   dependencies:
     events "^3.3.0"
     reflect-metadata "^0.1.13"
 
-"@systemic-games/pixels-edit-animation@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-edit-animation/-/pixels-edit-animation-1.1.0.tgz#f234b5a9302be40297ec13ff078df788a59e88c2"
-  integrity sha512-ILOlL6rDWRRY6kjnIEOFsEehzuH6i2+8cusxyW8LeJWffPIG6rYoa4PoeyqUd5040DzxMj5NCedOPJ4vnjwztw==
+"@systemic-games/pixels-edit-animation@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-edit-animation/-/pixels-edit-animation-1.2.0.tgz#0cfee3ae46a6b96721be79d5f9ad027b5058811f"
+  integrity sha512-yeljkGz6SDGO68TA6ni5jUewgzizmm/mX95PIzCjY1fWbjLtjjCqcUqSlw1ZFDiaV0ZZ5ylsSciB5UKWipDz/Q==
   dependencies:
-    "@systemic-games/pixels-core-animation" "1.1.0"
-    "@systemic-games/pixels-core-utils" "1.1.0"
+    "@systemic-games/pixels-core-animation" "~1.2.0"
+    "@systemic-games/pixels-core-utils" "~1.2.0"
     base64-js "^1.5.1"
 
-"@systemic-games/pixels-react@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-react/-/pixels-react-1.1.1.tgz#04ceee2a7c198cfa892cb3ae42b43ee8affb24f8"
-  integrity sha512-C7MhBv9M6KFU6fqWjv1RwnynwUCyYsxt98GLA3f7ICXvy6nDf9ZmuIj2cEbo/qZWqCT4M20V4xYSqARAR9YXng==
+"@systemic-games/pixels-react@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-react/-/pixels-react-1.2.0.tgz#014e7529e7c9f83b2bdc623a61f9543e8c7b3da4"
+  integrity sha512-oU+GueLJU6mhkJiIhbLIsY/Ec7zvywZ3AmYqWKeb2mIyNyLAOZNtyjjzyPOnebwFL0wCrZVmD4oi+e2uPItANQ==
 
-"@systemic-games/pixels-web-connect@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-web-connect/-/pixels-web-connect-1.1.1.tgz#ac9cd982319cf46e382f1544e3a378679666ff3e"
-  integrity sha512-xKGikovApG4pP0a1MQbq2+iq673I2eTbKOBJ8yJPQPr+ec0mLho6ZWKOdG5LCrIurzYqrTzgs3uf85UKr2Wq3g==
+"@systemic-games/pixels-web-connect@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@systemic-games/pixels-web-connect/-/pixels-web-connect-1.2.0.tgz#5e337e05a8d48a021ad2d9814c3b49af685ab2a3"
+  integrity sha512-PwF3H3EYPYO/MgEsgUQHkXYfXcRp71LV8zIF6GIeluMqnrRj1myfaLYyGuH/vAKfGRc7ihAHVGlbcZIRJyq2Uw==
   dependencies:
-    "@systemic-games/pixels-core-connect" "~1.1.1"
-    "@systemic-games/pixels-core-utils" "~1.1.0"
+    "@systemic-games/pixels-core-connect" "~1.2.0"
+    "@systemic-games/pixels-core-utils" "~1.2.0"
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
@@ -1880,6 +1880,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.0.tgz#b8ee8d83a99470c0661bd899417fcd77060682fe"
   integrity sha512-u+h43R6U8xXDt2vzUaVP3VwjjLyOJk6uEciZS8OSyziUQGOwmk+l+4drxcsDboHXwyTaqS1INebghmWMRxq3LA==
 
+"@types/node@^16.11.7":
+  version "16.18.85"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.85.tgz#17b5338c958efd67b064b92fbef41ad0333c397b"
+  integrity sha512-un7Bj6CPCRLxG2qp+9enNVFuRWCDKKOS6Q/FSpJ4xyrpLNJnRdAQERM2sJ6esaGvl02nK6kiGcMTb0pqknm62g==
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
@@ -1994,6 +1999,11 @@
   integrity sha512-3HO6rm0y+/cqvOyA8xcYLweF0TKXlAxmQASjbOi49Co51A1N4nR4bEwBgRoD9kNM+rqFGArjKr654SLp2CoGmQ==
   dependencies:
     source-map "^0.6.1"
+
+"@types/web-bluetooth@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz#f066abfcd1cbe66267cdbbf0de010d8a41b41597"
+  integrity sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==
 
 "@types/webpack-sources@*":
   version "3.2.0"
